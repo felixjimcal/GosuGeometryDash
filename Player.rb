@@ -8,12 +8,7 @@ class Player
 
         @boxCollision=[0,0]
         @speed=2
-<<<<<<< Updated upstream
-        @image = Gosu::Image.new(window, "s_player.png", true)
-    end
-    def draw()
-        @image.draw(@x, @y, 0, @spriteSize, @spriteSize, color = 0xff_ffffff, mode = :default)
-=======
+
         @image = Gosu::Image.new(window, "Minecart.png", false)
 
         @offset=30
@@ -30,16 +25,16 @@ class Player
         @image.draw(@x, @y, 0, @spriteSize, @spriteSize, color = 0xff_ffffff, mode = :default)
         @rope.draw(@x+@image.width/4, @y+@offset, 0, @spriteSize, @ropeYSize, color = 0xff_ffffff, mode = :default)
         @gancho.draw(@x+@image.width/4, @yGancho, 0, @spriteSize, @spriteSize, color = 0xff_ffffff, mode = :default)
->>>>>>> Stashed changes
+
         @boxCollision=[@image.width,@image.height]
     end
-    def Jump()
+    def move_left()
         if @x >0
             @x -= @speed
         end
     end
-<<<<<<< Updated upstream
-=======
+
+
     def move_right()
         if @x < WIDTH-@image.width
             @x +=@speed
@@ -47,17 +42,21 @@ class Player
     end
 
     def BajarGancho()
-        @ropeYSize+=1
-        @yGancho=@y+@ropeYSize+@rope.width
+        if @ropeYSize < HEIGHT/64
+            @ropeYSize+=0.1
+            @yGancho=@y+@ropeYSize*64+@rope.width/4
+        end
     end
 
     def SubirGancho()
-        @ropeYSize-=1
-        @yGancho=@y+@ropeYSize+@rope.width
+        if @ropeYSize > 1
+            @ropeYSize-=0.1
+            @yGancho=@y+@ropeYSize*64+@rope.width/4
+
+        end
     end
 
-    
->>>>>>> Stashed changes
+
 
     #PENDIENTE DE PRUEBA
     
@@ -75,11 +74,6 @@ class Player
             return 0
         end
         return 1
-        
-        
-
-
-        
     end
 
 end
