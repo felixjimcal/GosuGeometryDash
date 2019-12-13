@@ -3,39 +3,61 @@ class Player
     def initialize(window)
         @x = 300
         @y = 10
-        @spriteSize=1.5
+        @spriteSize=1
+
+
         @boxCollision=[0,0]
         @speed=2
-        @image = Gosu::Image.new(window, "Minecart.png", true)
+<<<<<<< Updated upstream
+        @image = Gosu::Image.new(window, "s_player.png", true)
+    end
+    def draw()
+        @image.draw(@x, @y, 0, @spriteSize, @spriteSize, color = 0xff_ffffff, mode = :default)
+=======
+        @image = Gosu::Image.new(window, "Minecart.png", false)
+
+        @offset=30
+        @ropeYSize=1
+        @rope = Gosu::Image.new(window, "Rope.png", :tileable => true)
+
+        @gancho = Gosu::Image.new(window, "Gancho.png", true)
+        @yGancho=@y+@ropeYSize+@rope.width
 
 
-        @RopeYSize=1
-        @Rope = Gosu::Image.new(window, "Rope.png", true)
-
-        @Gancho = Gosu::Image.new(window, "Gancho.png", true)
 
     end
     def draw()
         @image.draw(@x, @y, 0, @spriteSize, @spriteSize, color = 0xff_ffffff, mode = :default)
-        @Rope.draw(@x, @y, 0, @spriteSize, @RopeYSize, color = 0xff_ffffff, mode = :default)
-        @Rope.draw(@x, @y, 0, @spriteSize, @y+@Rope.height, color = 0xff_ffffff, mode = :default)
+        @rope.draw(@x+@image.width/4, @y+@offset, 0, @spriteSize, @ropeYSize, color = 0xff_ffffff, mode = :default)
+        @gancho.draw(@x+@image.width/4, @yGancho, 0, @spriteSize, @spriteSize, color = 0xff_ffffff, mode = :default)
+>>>>>>> Stashed changes
         @boxCollision=[@image.width,@image.height]
     end
-    def move_left()
+    def Jump()
         if @x >0
             @x -= @speed
         end
     end
+<<<<<<< Updated upstream
+=======
     def move_right()
-        if @x < WINDOW_WIDTH-@image.width
-            @spriteSizeY+=1
+        if @x < WIDTH-@image.width
+            @x +=@speed
         end
     end
 
     def BajarGancho()
-
+        @ropeYSize+=1
+        @yGancho=@y+@ropeYSize+@rope.width
     end
+
+    def SubirGancho()
+        @ropeYSize-=1
+        @yGancho=@y+@ropeYSize+@rope.width
+    end
+
     
+>>>>>>> Stashed changes
 
     #PENDIENTE DE PRUEBA
     
