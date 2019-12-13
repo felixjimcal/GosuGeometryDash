@@ -5,6 +5,7 @@ HEIGHT = 640
 WIDTH = 480
 
 class MainWindow < Gosu::Window
+    attr_reader :width, :height
     def initialize()
         super HEIGHT, WIDTH, false
         self.caption = "Geometry Dash"
@@ -14,11 +15,9 @@ class MainWindow < Gosu::Window
 
     def draw
         @background_image.draw(0, 0, 0)
-        @Topo.draw()
     end
 
 end
 
-topp = Topo.new
 window = MainWindow.new
 window.show
